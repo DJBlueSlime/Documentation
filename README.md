@@ -7,4 +7,9 @@ A public repo for tutorials about coding and git, an some termux things.
 ```
 https://github.com/Josh012422/Documentation
 ```
+
+### Ssh
+```
+git@github.com:Josh012422/Documentation
+```
 If you're on mobile

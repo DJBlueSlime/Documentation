@@ -1,5 +1,5 @@
-Created: Apr.14/2020
-Modified: Apr.14/2020
+Created: Apr.08/2020
+Modified: Apr.08/2020
 
 # Verifying GPG
 
@@ -8,26 +8,28 @@ Validate that you have 'gpg' installed by running:
 ~~~
 $ gpg --version
 ~~~
-If it outputs something, yay you have it installed, search google 'How to install gpg"
+If it outputs something, congrats, you have it installed
 
-Then execute:
+If not search google "How to install gpg".
+
+# Generating a gpg key
+
+Execute:
 ~~~
 $ gpg --full-generate-key
 ~~~
 
-# Generating a GPG key
-
 To generate a key
 
-It will output this, follow me:
+It will show the following text:
 ~~~
    (1) RSA and RSA (default)
    (2) DSA and Elgamal
    (3) DSA (sign only)
    (4) RSA (sign only)
-Your selection? 1
+Your selection? [Type 1]
 RSA keys may be between 1024 and 4096 bits long.
-What keysize do you want? (2048) 4096
+What keysize do you want? (2048) [(GitHub needs 4096 bits long keys) Type 4096]
 Requested keysize is 4096 bits
 Please specify how long the key should be valid.
          0 = key does not expire
@@ -35,12 +37,12 @@ Please specify how long the key should be valid.
       <n>w = key expires in n weeks
       <n>m = key expires in n months
       <n>y = key expires in n years
-Key is valid for? (0) 0
+Key is valid for? (0) [Type 0]
 Key does not expire at all
-Is this correct? (y/N) y
+Is this correct? (y/N) [Type y]
 
-real name: <any name>
-email: <verified email used for github>
+real name: [any name]
+email: [verified email used for github]
 ~~~
 
 Type O at the end to generate the key.
@@ -86,13 +88,15 @@ Next we must inform 'git' to use this key.
 $ git config --global user.signingkey [SIGNING-KEY]
 ~~~
 
+`Verify that the [SIGNING-KEY] is correctly typed.`
+
 Now to do a signed commit you must run:
 ~~~
 $ git commit -S -m "Your Message"
 ~~~
-Note -S flag
+`Note -S flag.`
 
-# [OPTIONAL] Commits signed automatically
+# [OPTIONAL] Commits automatically signed
 
 If you want all of your commits signed automatically without the -S flag, you must run:
 
@@ -100,5 +104,40 @@ If you want all of your commits signed automatically without the -S flag, you mu
 $ git config --global commits.signing true
 ~~~
 
-Done, now if you got to the commits page in your repo, it will have a verified badge
+# Success
 
+Done, now if you get to the commits page in your repo, the commit  will have a shiny verified badge
+
+# [EXTRA] Troubleshooting
+
+Trouble n°1:
+
+$ git commit -m "[COMMIT MESSAGE]"
+error: gpg failed to sign the data
+fatal: failed to write commit object
+
+Solution:
+
+If this happens, do this:
+
+1. Execute:
+```bash
+logout
+```
+Yeah, logout. Then close all terminal windows, Open a new window.
+
+2. Execute in new window:
+```bash
+gpg-agent --daemon
+```
+3. Do the commit, but first "cd" to git repo (obviusly):
+```bash
+cd PATH/TO/REPO
+```
+Then do the commit:
+```bash
+git commit -m "[COMMIT MESSAGE]"
+```
+And that is it
+
+Problem Solved.

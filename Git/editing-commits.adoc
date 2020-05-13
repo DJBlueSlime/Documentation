@@ -1,0 +1,67 @@
+= Editing commits
+
+Do you have the problem that you mispelled some letter or word on a commit message? Well, then I will give you a small but very useful tip.
+
+= The problem
+
+[source, terminal]
+----
+$ git commit -m "Updayed README.md" && git push
+----
+
+"NOOOOOOOOO", That feeling when you see that you mispelled a letter an already pushed it.
+
+= The solution
+
+Well, that is horrible, but fortunately there is a solution.
+
+Behold, the solution:
+
+[source, terminal]
+----
+$ git commit --amend -m "Updated README.md" && git push
+----
+
+If you now run:
+
+[source, terminal]
+----
+$ git log
+----
+
+You will see the message spelled correctly.
+
+If you want to change the author, the date or even the gpg key which signed the commit, you can.
+
+= Changing author
+
+To change the author of a commit run:
+
+[source, terminal]
+----
+$ git commit --amend --author "{[<name>]} {[<email>]}"
+----
+
+= Changing date
+
+To change the date of a commit, run:
+
+[source, terminal]
+----
+$ git commit --amend --date "<day> <month> <number of day> <hh:mm:ss>"
+----
+
+= Changing gpg key
+
+To change the gpg key of the commit, run:
+
+[source, terminal]
+----
+$ git commit --amend -S -gpg-sign={[<key-id>]}
+----
+
+
+
+
+
+

@@ -24,13 +24,13 @@ Yeah, pretty different from JavaScript, Also note the ':'. Second one:
 
 ```go
 var name = "John"
-var age int;
+var age int
 ```
 
 Yeah, that looks similar to JavaScript. In second line we see:
 
 ```go
-var age int;
+var age int
 ```
 
-Why? Well it's to define variables with no value, 'var' indicates that is a variable, 'age' is the variable name and 'int' defines the type of the variable. Also don't forget to put the semicolon an the end.
+Why? Well it's to define variables with no value, 'var' indicates that is a variable, 'age' is the variable name and 'int' defines the type of the variable.
